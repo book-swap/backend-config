@@ -1,0 +1,35 @@
+# Development docker-compose config
+
+version: "3.7"
+
+services:
+  auth:
+    build: ./auth
+    volumes:
+      - ./auth:/usr/src/app/
+    # Install nodemon for development env and then run start:dev script
+    command: sh -c 'npm install nodemon && npm run start:dev'
+    environment:
+      NODE_ENV: development
+      JWT_SECRET: dev_jwt_secret
+
+  user:
+    build: ./user
+    volumes:
+      - ./user:/usr/src/app
+    # Install nodemon for development env and then run start:dev script
+    command: sh -c 'npm install nodemon && npm run start:dev'
+    environment:
+      NODE_ENV: development
+      JWT_SECRET: dev_jwt_secret
+
+  db:
+    networks:
+      - public
+    ports:
+      - 27017:27017
+  nginx:
+    volumes:
+      - type: bind
+        source: ./nginx.dev.conf
+        target: /etc/nginx/nginx.conf
