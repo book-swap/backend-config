@@ -32,6 +32,16 @@ services:
       NODE_ENV: development
       JWT_SECRET: dev_jwt_secret
 
+  query:
+    build: ./query
+    volumes:
+      - ./query:/usr/src/app
+    command: sh -c 'npm install nodemon && npm run start:dev'
+    environment:
+      NODE_ENV: development
+      JWT_SECRET: dev_jwt_secret
+      GOODREADS_KEY: Qc2kDUaCVeREU0qo6kMmg
+
   db:
     networks:
       - public

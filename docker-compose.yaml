@@ -58,6 +58,25 @@ services:
     depends_on:
       - db
 
+  query:
+    build: ./query
+    restart: always
+    volumes:
+      - query_node_modules:/usr/src/app/node_modules
+    expose:
+      - 8080
+    command: npm run start:prod
+    networks:
+      - intern
+      - public
+    environment:
+      NODE_ENV: production
+      JWT_SECRET: /run/secrets/json_web_token_secret
+      GOODREADS_KEY: /run/secrets/goodreads_key_secret
+    secrets:
+      - json_web_token_secret
+      - goodreads_key_secret
+
   db:
     image: mongo:4.0-xenial
     restart: always
@@ -79,12 +98,15 @@ services:
     depends_on:
       - auth
       - user
+      - book
+      - query
       - db
 
 volumes:
   auth_node_modules:
   user_node_modules:
   book_node_modules:
+  query_node_modules:
   mongo_data:
 
 networks:
@@ -96,4 +118,6 @@ networks:
 
 secrets:
   json_web_token_secret:
+    external: true
+  goodreads_key_secret:
     external: true
