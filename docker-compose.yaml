@@ -111,10 +111,10 @@ volumes:
 
 networks:
   intern:
-    driver: bridge
+    driver: overlay
     internal: true
   public:
-    driver: bridge
+    driver: overlay
 
 secrets:
   json_web_token_secret:
