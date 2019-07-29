@@ -74,8 +74,6 @@ services:
     restart: always
     volumes:
       - mongo_data:/data/db
-    networks:
-      - intern
 
   nginx:
     image: nginx:1.17
