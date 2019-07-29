@@ -9,8 +9,8 @@ services:
     command: npm run start:prod
     environment:
       NODE_ENV: production
-    secrets:
-      - json_web_token_secret
+    env_file:
+    - .env
     depends_on:
       - db
 
@@ -22,8 +22,8 @@ services:
     command: npm run start:prod
     environment:
       NODE_ENV: production
-    secrets:
-      - json_web_token_secret
+    env_file:
+    - .env
     depends_on:
       - db
 
@@ -35,8 +35,8 @@ services:
     command: npm run start:prod
     environment:
       NODE_ENV: production
-    secrets:
-      - json_web_token_secret
+    env_file:
+    - .env
     depends_on:
       - db
 
@@ -48,9 +48,8 @@ services:
     command: npm run start:prod
     environment:
       NODE_ENV: production
-    secrets:
-      - json_web_token_secret
-      - goodreads_key_secret
+    env_file:
+    - .env
 
   db:
     image: mongo:4.0-xenial
@@ -79,9 +78,3 @@ volumes:
   book_node_modules:
   query_node_modules:
   mongo_data:
-
-secrets:
-  json_web_token_secret:
-    external: true
-  goodreads_key_secret:
-    external: true

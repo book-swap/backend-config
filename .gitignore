@@ -3,3 +3,4 @@ auth
 user
 book
 query
+.env
