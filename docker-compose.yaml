@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   auth:
-    build: ./auth
+    image: bookswap/auth
     restart: always
     volumes:
       - auth_node_modules:/usr/src/app/node_modules
@@ -21,7 +21,7 @@ services:
       - db
 
   user:
-    build: ./user
+    image: bookswap/user
     restart: always
     volumes:
       - user_node_modules:/usr/src/app/node_modules
@@ -40,7 +40,7 @@ services:
       - db
 
   book:
-    build: ./book
+    image: bookswap/book
     restart: always
     volumes:
       - book_node_modules:/usr/src/app/node_modules
@@ -59,7 +59,7 @@ services:
       - db
 
   query:
-    build: ./query
+    image: bookswap/query
     restart: always
     volumes:
       - query_node_modules:/usr/src/app/node_modules
