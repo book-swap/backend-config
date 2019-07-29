@@ -6,12 +6,10 @@ services:
     restart: always
     volumes:
       - auth_node_modules:/usr/src/app/node_modules
-    expose:
-      - 8080
     command: npm run start:prod
-    networks:
-      - intern
-      - public
+    entrypoint: source /data/entrypoint_overwrited.sh
+    tmpfs:
+      - /run/secrets
     environment:
       NODE_ENV: production
       JWT_SECRET: /run/secrets/json_web_token_secret
@@ -25,12 +23,10 @@ services:
     restart: always
     volumes:
       - user_node_modules:/usr/src/app/node_modules
-    expose:
-      - 8080
     command: npm run start:prod
-    networks:
-      - intern
-      - public
+    entrypoint: source /data/entrypoint_overwrited.sh
+    tmpfs:
+      - /run/secrets
     environment:
       NODE_ENV: production
       JWT_SECRET: /run/secrets/json_web_token_secret
@@ -44,12 +40,10 @@ services:
     restart: always
     volumes:
       - book_node_modules:/usr/src/app/node_modules
-    expose:
-      - 8080
     command: npm run start:prod
-    networks:
-      - intern
-      - public
+    entrypoint: source /data/entrypoint_overwrited.sh
+    tmpfs:
+      - /run/secrets
     environment:
       NODE_ENV: production
       JWT_SECRET: /run/secrets/json_web_token_secret
@@ -63,12 +57,10 @@ services:
     restart: always
     volumes:
       - query_node_modules:/usr/src/app/node_modules
-    expose:
-      - 8080
     command: npm run start:prod
-    networks:
-      - intern
-      - public
+    entrypoint: source /data/entrypoint_overwrited.sh
+    tmpfs:
+      - /run/secrets
     environment:
       NODE_ENV: production
       JWT_SECRET: /run/secrets/json_web_token_secret
@@ -108,13 +100,6 @@ volumes:
   book_node_modules:
   query_node_modules:
   mongo_data:
-
-networks:
-  intern:
-    driver: overlay
-    internal: true
-  public:
-    driver: overlay
 
 secrets:
   json_web_token_secret:
