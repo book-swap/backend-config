@@ -7,12 +7,8 @@ services:
     volumes:
       - auth_node_modules:/usr/src/app/node_modules
     command: npm run start:prod
-    entrypoint: source /data/entrypoint_overwrited.sh
-    tmpfs:
-      - /run/secrets
     environment:
       NODE_ENV: production
-      JWT_SECRET: /run/secrets/json_web_token_secret
     secrets:
       - json_web_token_secret
     depends_on:
@@ -24,12 +20,8 @@ services:
     volumes:
       - user_node_modules:/usr/src/app/node_modules
     command: npm run start:prod
-    entrypoint: source /data/entrypoint_overwrited.sh
-    tmpfs:
-      - /run/secrets
     environment:
       NODE_ENV: production
-      JWT_SECRET: /run/secrets/json_web_token_secret
     secrets:
       - json_web_token_secret
     depends_on:
@@ -41,12 +33,8 @@ services:
     volumes:
       - book_node_modules:/usr/src/app/node_modules
     command: npm run start:prod
-    entrypoint: source /data/entrypoint_overwrited.sh
-    tmpfs:
-      - /run/secrets
     environment:
       NODE_ENV: production
-      JWT_SECRET: /run/secrets/json_web_token_secret
     secrets:
       - json_web_token_secret
     depends_on:
@@ -58,13 +46,8 @@ services:
     volumes:
       - query_node_modules:/usr/src/app/node_modules
     command: npm run start:prod
-    entrypoint: source /data/entrypoint_overwrited.sh
-    tmpfs:
-      - /run/secrets
     environment:
       NODE_ENV: production
-      JWT_SECRET: /run/secrets/json_web_token_secret
-      GOODREADS_KEY: /run/secrets/goodreads_key_secret
     secrets:
       - json_web_token_secret
       - goodreads_key_secret
