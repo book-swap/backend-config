@@ -50,6 +50,8 @@ services:
       NODE_ENV: production
     env_file:
       - .env
+    depends_on:
+      - db
 
   chat:
     image: bookswap/chat
@@ -61,6 +63,8 @@ services:
       NODE_ENV: production
     env_file:
       - .env
+    depends_on:
+      - db
 
   db:
     image: mongo:4.0-xenial
@@ -81,6 +85,7 @@ services:
       - user
       - book
       - query
+      - chat
       - db
 
 volumes:
