@@ -37,6 +37,14 @@ services:
     environment:
       NODE_ENV: development
 
+  chat:
+    build: ./chat
+    volumes:
+      - ./chat:/usr/src/app
+    command: sh -c 'npm install nodemon && npm run start:dev'
+    environment:
+      NODE_ENV: development
+
   db:
     ports:
       - 27017:27017

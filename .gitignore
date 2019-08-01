@@ -3,4 +3,5 @@ auth
 user
 book
 query
+chat
 .env

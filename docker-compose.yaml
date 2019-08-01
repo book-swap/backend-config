@@ -10,7 +10,7 @@ services:
     environment:
       NODE_ENV: production
     env_file:
-    - .env
+      - .env
     depends_on:
       - db
 
@@ -23,7 +23,7 @@ services:
     environment:
       NODE_ENV: production
     env_file:
-    - .env
+      - .env
     depends_on:
       - db
 
@@ -36,7 +36,7 @@ services:
     environment:
       NODE_ENV: production
     env_file:
-    - .env
+      - .env
     depends_on:
       - db
 
@@ -49,7 +49,18 @@ services:
     environment:
       NODE_ENV: production
     env_file:
-    - .env
+      - .env
+
+  chat:
+    image: bookswap/chat
+    restart: always
+    volumes:
+      - chat_node_modules:/usr/src/app/node_modules
+    command: npm run start:prod
+    environment:
+      NODE_ENV: production
+    env_file:
+      - .env
 
   db:
     image: mongo:4.0-xenial
@@ -77,4 +88,5 @@ volumes:
   user_node_modules:
   book_node_modules:
   query_node_modules:
+  chat_node_modules:
   mongo_data:
